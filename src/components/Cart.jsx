@@ -1,34 +1,32 @@
-import React, {useContext} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import Ctx from "../Ctx";
 
-export default ({name, price}) => {
-    const {setCart} = useContext(Ctx);
-    const add = (e) => {
-        setCart( gds => {
-            let result = gds. filter(el => el.name === name);
-            if(result.length){
-                 let newGds = gds.map(el => {
-                    if(el.name === name){
-                        el.cnt +=  1;
-                    }
-                    return el;
-                 })
-                return newGds
-            }else{
-                return [...gds,{name: "name", price: "price, cnt: 1"}];
-            }
-        })
-    }
-    const remove = (e) => {
-        setGoods(gds => gds.filter(el =>el.name !== name ))
-    }
+export default () =>{
+    const {cart} = useContext(Ctx);
+    let n = cart.reduce((acc, el) => acc + el.price *el.cnt, 0)
+    const [sum, setSum] =useState(0);
 
-     return <li className="card">
-        <h3>{name}</h3>
-        <span className="price">{price}</span>
-        <div>
-            <button onClick={add}>Add to card</button>
-            <button onClick={remove}>Remove</button>
-        </div>
-     </li>
+
+    useEffect(()=>{
+        setSum(cart.reduce((acc, el) => acc + el.price * el.cnt, 0))
+    })
+    return<table>
+        <thead>
+            <tr>
+                <th>Название товаров</th>
+                <th>Количество</th>
+                <th>Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            {cart.map((el,i) => {
+                <CartRow key={i} {...e}/>
+            })}
+            <tfoot>
+                <td></td>
+                <td>ИТОГО:</td>
+                <td>{sum}</td>
+            </tfoot>
+        </tbody>
+    </table>
 }

@@ -4,6 +4,7 @@ import Ctx from "./Ctx";
 
 import List from "./components/List";
 import Form from "./components/Form";
+import Cart from "./components/Cart";
 
 export default () => {
     let goodsSt = localStorage.getItem("g")
@@ -13,7 +14,7 @@ export default () => {
         goodsSt =[];
     }
 
-    let cartSt = localStorage.getItem("g")
+    let cartSt = localStorage.getItem("c")
     if(cartSt){
         cartSt = JSON.parse(cartSt)
     }else{
@@ -44,5 +45,6 @@ export default () => {
         <h2>Список товаров</h2>
         <List/>
         <h2>Корзина</h2>
+        <Cart/>
     </Ctx.Provider>
 }

@@ -1,7 +1,7 @@
 import React,{useContext} from "react";
 import ctx from "../Ctx";
 
-import Cart from "./Cart";
+import Card from "./Card";
 
 export default () => {
     const {goods}=useContext(ctx);
