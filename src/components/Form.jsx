@@ -1,17 +1,17 @@
-import React, {useState, useContext} from "react";
-import Ctx from "../Ctx"
-
+import React, {useState} from "react";
+import { useDispatch} from "react-redux";
 
 export default () => {
+    const dispatch = useDispatch();
     const [name, setName] = useState("");
     const [price, setPrice] = useState(0);
-    const {setGoods} = useContext(Ctx);
 
     const handler = (e) =>{
         e.preventDefault();
-        setGoods(gds => {
-            let has = gds.filter(el => el.name.toLowerCase() === name.toLowerCase())
-            return has.length ? gds : [...gds, {name: name, price: price}];
+        
+        dispatch({
+            type: "ADD",
+            playload: {name: name, price: price}
         })
     }
     return<form onSubmit={handler}>
