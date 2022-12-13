@@ -11,7 +11,7 @@ export default () => {
         e.preventDefault();
         setGoods(gds => {
             let has = gds.filter(el => el.name.toLowerCase() === name.toLowerCase())
-            return has.length ? gds : [...gds, {name: name, price: price}]
+            return has.length ? gds : [...gds, {name: name, price: price}];
         })
     }
     return<form onSubmit={handler}>

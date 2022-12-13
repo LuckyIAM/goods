@@ -1,0 +1,57 @@
+$color: blueviolet;
+
+@mixin set-flex($gap: 10px, $dir: column){
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: $gap;
+}
+
+body {
+	margin: 0;
+	font-family: "Nunito", "Arial", "Helvetica", sans-serif;
+}
+h2{
+	color: $color;
+}
+h1 {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+	color: #61dafb;
+}
+h1 img {
+	height: 50px;
+	animation: rotate 3s linear infinite;
+}
+@keyframes rotate {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+input{
+	border: 1px solid red;
+}
+button{
+	border: 1px solid $color;
+	border-radius: 2px;
+	background-color: lighten($color, 10%); // darken()
+	color: darken($color, 20%);
+	&:hover{
+		background: #fff;
+	}
+}
+.card{
+	@include set-flex();
+	&>div{
+		@include set-flex(10px, row)
+	}
+}
+.cards-container{
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 30px;
+;}
